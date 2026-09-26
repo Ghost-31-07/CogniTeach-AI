@@ -1,4 +1,4 @@
-# 📚 ShikshaPlan AI (शिक्षाPlan AI)
+CogniTeach-Ai
 
 > **Next-Generation AI Lesson Planner & Classroom Mastery Platform for Educators and Students**  
 > *Transforming lesson creation, adaptive student diagnostics, doubt clearing, and academic honors with Google Gemini AI and Razorpay.*
@@ -7,7 +7,7 @@
 
 ## 🌟 Overview
 
-**ShikshaPlan AI** is a full-stack educational SaaS platform created specifically for teachers and students. Built with React 19, TypeScript, Express, Google GenAI SDK, and Firebase Firestore, it bridges teacher preparation with active student learning:
+**CogniTeach AI** is a full-stack educational SaaS platform created specifically for teachers and students. Built with React 19, TypeScript, Express, Google GenAI SDK, and Firebase Firestore, it bridges teacher preparation with active student learning:
 
 1. **For Teachers (Faculty Role)**:
    - **AI Lesson Generator**: Create 3-in-1 instructional packages in seconds:
