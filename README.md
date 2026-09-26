@@ -51,8 +51,8 @@ CogniTeach-Ai
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/shikshaplan-ai.git
-cd shikshaplan-ai
+git clone https://github.com/your-username/CogniTeach-ai.git
+cd CogniTeach-ai
 ```
 
 ### 2. Install dependencies
