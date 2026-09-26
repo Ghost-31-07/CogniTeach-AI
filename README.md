@@ -9,3 +9,18 @@
   <a href="https://aistudio.google.com/apps">Start building</a>
 
 </div>
+# 1. Initialize git (if not already initialized)
+git init
+
+# 2. Add all project files
+git add .
+
+# 3. Commit with a clean message
+git commit -m "Initial commit: CogniTeach (www.CogniTeach.com) - AI Lesson Planner & Classroom Mastery Platform"
+
+# 4. Add your GitHub remote repository URL
+git remote add origin https://github.com/YOUR_USERNAME/cogniteach-ai.git
+
+# 5. Push to main branch
+git branch -M main
+git push -u origin main
