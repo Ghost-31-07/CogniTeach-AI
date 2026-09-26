@@ -1,0 +1,294 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with role (faculty or student), plan tier, generation quota, and student score stats",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Unique user ID matching Firebase Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "User display name"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["faculty", "student"],
+          "description": "Account role: faculty (teacher/educator) or student"
+        },
+        "planTier": {
+          "type": "string",
+          "enum": ["basic", "pro"],
+          "description": "User subscription plan tier"
+        },
+        "monthlyGenerationsCount": {
+          "type": "number",
+          "description": "Number of lesson plans generated in the current billing cycle"
+        },
+        "billingCycleResetDate": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "ISO timestamp when the monthly quota resets"
+        },
+        "studentPoints": {
+          "type": "number",
+          "description": "Current month gamified points for student leaderboard"
+        },
+        "studentStreak": {
+          "type": "number",
+          "description": "Active learning streak in days"
+        },
+        "quizzesCompleted": {
+          "type": "number",
+          "description": "Total completed quizzes and diagnostics"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Timestamp when the user account was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Timestamp when the user account was last updated"
+        }
+      },
+      "required": ["userId", "email", "role", "planTier", "createdAt", "updatedAt"]
+    },
+    "LessonPlan": {
+      "title": "LessonPlan",
+      "description": "Generated lesson plan with structured plan, student worksheet, and quiz",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Unique lesson plan ID"
+        },
+        "userId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Owner user UID"
+        },
+        "topic": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Lesson topic or title"
+        },
+        "gradeLevel": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Target grade level or student age"
+        },
+        "duration": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Class session duration"
+        },
+        "lessonPlanMarkdown": {
+          "type": "string",
+          "maxLength": 65536,
+          "description": "Markdown text of the structured lesson plan"
+        },
+        "worksheetMarkdown": {
+          "type": "string",
+          "maxLength": 65536,
+          "description": "Markdown text of printable student worksheet"
+        },
+        "quizJson": {
+          "type": "string",
+          "maxLength": 65536,
+          "description": "Serialized JSON of 5-question quiz with answer key"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["id", "userId", "topic", "gradeLevel", "duration", "lessonPlanMarkdown", "worksheetMarkdown", "quizJson", "createdAt", "updatedAt"]
+    },
+    "Doubt": {
+      "title": "Doubt",
+      "description": "Student question/doubt submitted for teacher explanation across any subject",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Unique doubt identifier"
+        },
+        "studentId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Student Firebase Auth UID"
+        },
+        "studentName": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Display name of student"
+        },
+        "studentEmail": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Student contact email"
+        },
+        "subject": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Subject discipline (e.g., Mathematics, Physics, Chemistry, Biology, History, Computer Science)"
+        },
+        "topic": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Specific topic name"
+        },
+        "question": {
+          "type": "string",
+          "maxLength": 8192,
+          "description": "Student's question or doubt text"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["open", "answered", "resolved"],
+          "description": "Status of the doubt"
+        },
+        "teacherResponse": {
+          "type": "string",
+          "maxLength": 16384,
+          "description": "Teacher's response and explanation"
+        },
+        "teacherName": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Name of educator who answered"
+        },
+        "teacherId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "UID of teacher who answered"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Timestamp when question was posted"
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Timestamp when question was last updated"
+        }
+      },
+      "required": ["id", "studentId", "studentName", "subject", "topic", "question", "status", "createdAt", "updatedAt"]
+    },
+    "StudentProgress": {
+      "title": "StudentProgress",
+      "description": "Record of a student quiz or diagnostic completion with detailed mistake analysis",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Unique progress record ID"
+        },
+        "studentId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Student Firebase Auth UID"
+        },
+        "studentName": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Display name of student"
+        },
+        "studentEmail": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Student email address"
+        },
+        "subject": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Subject discipline"
+        },
+        "topic": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Topic or unit assessed"
+        },
+        "score": {
+          "type": "number",
+          "description": "Number of correct answers"
+        },
+        "totalQuestions": {
+          "type": "number",
+          "description": "Total questions in quiz/diagnostic"
+        },
+        "percentage": {
+          "type": "number",
+          "description": "Percentage score (0-100)"
+        },
+        "understandingLevel": {
+          "type": "string",
+          "enum": ["beginner", "developing", "proficient", "advanced"],
+          "description": "Calculated pedagogical understanding level"
+        },
+        "pointsEarned": {
+          "type": "number",
+          "description": "Gamification points earned for this attempt"
+        },
+        "answersJson": {
+          "type": "string",
+          "maxLength": 65536,
+          "description": "Serialized JSON array of questions, student answers, mistakes, and misconceptions"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Completion timestamp"
+        }
+      },
+      "required": ["id", "studentId", "studentName", "subject", "topic", "score", "totalQuestions", "percentage", "understandingLevel", "pointsEarned", "answersJson", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "User profile with role (faculty or student), subscription, and monthly statistics"
+    },
+    "/users/{userId}/lessonPlans/{lessonPlanId}": {
+      "schema": {
+        "$ref": "#/entities/LessonPlan"
+      },
+      "description": "Saved lesson plans, worksheets, and quizzes for each educator"
+    },
+    "/doubts/{doubtId}": {
+      "schema": {
+        "$ref": "#/entities/Doubt"
+      },
+      "description": "Student doubts and questions across all subjects with faculty resolutions"
+    },
+    "/progress/{progressId}": {
+      "schema": {
+        "$ref": "#/entities/StudentProgress"
+      },
+      "description": "Student test and diagnostic progress records including mistake diagnoses for faculty review"
+    }
+  }
+}

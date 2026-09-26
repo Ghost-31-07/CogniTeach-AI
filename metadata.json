@@ -1,0 +1,6 @@
+{
+  "name": "CogniTeach - AI Lesson Planner & Classroom Mastery Platform",
+  "description": "Multi-role academic platform for students and teachers powered by CogniTeach AI with lesson planning, doubt clearing, mistake analytics, and leaderboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

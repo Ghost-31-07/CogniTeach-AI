@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #0a0b14;
+    --bg-secondary: #111322;
+    --card-bg: rgba(22, 27, 46, 0.7);
+    --card-border: rgba(147, 197, 253, 0.15);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+  }
+
+  .light {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(99, 102, 241, 0.18);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.4deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-0.5deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(-1deg);
+  }
+}
+
+@keyframes pulse-orb {
+  0%, 100% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 0.85;
+    filter: blur(12px);
+  }
+  50% {
+    transform: scale(1.25) translate(-40%, -40%);
+    opacity: 1;
+    filter: blur(20px);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(55px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(55px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-reverse {
+  from {
+    transform: rotate(360deg) translateX(85px) rotate(-360deg);
+  }
+  to {
+    transform: rotate(0deg) translateX(85px) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 7s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbit 8s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbit-reverse 12s linear infinite;
+}
+
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 40px -15px var(--accent-glow), 0 0 25px -5px rgba(124, 58, 237, 0.12);
+}
+
+.glass-glow-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-glow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.35), 0 0 30px rgba(168, 85, 247, 0.2);
+  border-color: rgba(165, 180, 252, 0.4);
+}
+
+/* Custom printable styles for PDF and printer export */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print,
+  nav,
+  header,
+  footer,
+  .antigravity-bg,
+  button:not(.print-allow) {
+    display: none !important;
+  }
+
+  .print-area {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+  }
+
+  .print-area h1,
+  .print-area h2,
+  .print-area h3 {
+    color: #111827 !important;
+    page-break-after: avoid;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+  }
+}
